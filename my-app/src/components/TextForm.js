@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import girlPointingUrl from '../../src/assets/images/girlpointing-transformed.png';
 import findreplace from '../../src/assets/images/exchange.png';
-import copy from '../../src/assets/images/copy.png';
-
 
 // This is a functional component named TextForm
 export default function TextForm(props) {
@@ -16,8 +14,6 @@ export default function TextForm(props) {
         setFind(event.target.value);
     }
 
-
-    
     // Function to handle changes in the 'replace' input field
     const handleReplaceChange = (event) => {
         setReplace(event.target.value);
@@ -78,20 +74,6 @@ export default function TextForm(props) {
         setText(event.target.value);
     }
 
-    //Copy all text
-    const handleCopy=()=>{
-        var text=document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
-        
-    }
-
-    //remove Extra Spaces
-    const handleExtraSpaces=()=>{
-        let newText = text.split(/[  ]+/);
-        setText(newText.join(" "));
-    }
-
     // useState hook to manage the state of the text.
     // 'text' is the current state, and 'setText' is the function to update the state.
     // The initial state is set to an empty string.
@@ -105,21 +87,14 @@ export default function TextForm(props) {
                     <div className="col-md-8 mb-3">
                         <h1 className="text-center text-white my-3">{props.heading}</h1>
                         {/* Textarea for user input. The value is controlled by the state. */}
-                        <div className="copytext bg-white py-1 ">
-
-                        <button type='button' className='btn bg-transparent align-self-center' onClick={handleCopy}>
-                            <img src={copy} alt="find" />
-                        </button>
-
                         <textarea
                             className="form-control my-2"
                             id="myBox"
                             rows="10"
                             value={text}
                             onChange={handleOnChange}
-                            style={{ backgroundColor: '#f0f0f0', padding: '10px'}}>
+                            style={{backgroundColor: props.mode==='light'?'grey':'white', padding: '10px', borderRadius: '10px' }}>
                         </textarea>
-                        </div>
 
                         {/* Find and Replace functionality */}
                         <div className="find-and-replace d-flex">
@@ -145,9 +120,6 @@ export default function TextForm(props) {
                             <button className="btn btn-primary mx-3" onClick={handleClearClick}>
                                 Clear Text
                             </button>
-                            <button className="btn btn-primary mx-3" onClick={handleExtraSpaces}>
-                                Remove Extra Space
-                            </button>
                         </div>
                     </div>
 
@@ -166,7 +138,7 @@ export default function TextForm(props) {
                     </div>
                     <div className="preview">
                         <h1>Preview:</h1>
-                        <p>{text}</p>
+                        <p>{text.length>0?text:"Enter Something to preview it here."}</p>
                     </div>
                 </div>
             </div>

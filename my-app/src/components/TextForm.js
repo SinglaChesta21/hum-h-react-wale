@@ -25,6 +25,8 @@ export default function TextForm(props) {
         let newText = text.replace(new RegExp(find, 'g'), replace);
         // Update the state with the new text after replacement
         setText(newText);
+        props.showAlert("your text is replaced", "success")
+
     }
 
     // Function to handle the button click event for converting text to uppercase
@@ -34,6 +36,7 @@ export default function TextForm(props) {
         let newText = text.toUpperCase();
         // Update the state with the new uppercase text
         setText(newText);
+        props.showAlert("Text Converted to uppercase", "success")
     }
 
     // Function to handle the button click event for converting text to lowercase
@@ -43,6 +46,8 @@ export default function TextForm(props) {
         let newText = text.toLowerCase();
         // Update the state with the new lowercase text
         setText(newText);
+        props.showAlert("Text Converted to lowercase", "success")
+
     }
 
     // Function to capitalize the first letter of each word in the text
@@ -58,6 +63,8 @@ export default function TextForm(props) {
         let newText = capitalizedWords.join(" ");
         // Update the state with the new capitalized text
         setText(newText);
+        props.showAlert("Text Converted to Capitalize", "success")
+
     }
 
     // Function to clear the text
@@ -65,6 +72,8 @@ export default function TextForm(props) {
         let newText = ('');
         // Update the state to clear the text
         setText(newText);
+        props.showAlert("Text Cleared", "success")
+
     }
 
     // Function to handle changes in the textarea input
